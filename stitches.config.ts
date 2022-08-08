@@ -174,6 +174,7 @@ export const {
       ...indigoA,
       ...whiteA,
       ...blackA,
+      ...tomato
     },
     fonts: {
       untitled: "Untitled Sans, -apple-system, system-ui, sans-serif",

@@ -30,7 +30,7 @@ export function closeAlloy() {
     alloy.close();
 }
 
-export function openAlloy(cb: any, anchorElement: any) {
+export function openAlloy(cb: any, anchorElement?: any) {
     alloy.open(cb, anchorElement);
 }
 
