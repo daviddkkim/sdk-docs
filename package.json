@@ -9,7 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@alloyidentity/web-sdk": "0.2.9",
+    "@mdx-js/loader": "2.1.2",
+    "@next/mdx": "12.2.4",
+    "@radix-ui/colors": "0.1.8",
+    "@stitches/react": "1.2.8",
+    "@types/chroma-js": "2.1.4",
+    "chroma-js": "2.4.2",
     "next": "12.2.4",
+    "next-themes": "0.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
