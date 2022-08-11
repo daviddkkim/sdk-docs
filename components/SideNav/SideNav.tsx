@@ -39,7 +39,7 @@ export function SideNavBar() {
     const Title = () => {
         return (
             <TitleContainer>
-                <StyledTitle>Alloy Docs</StyledTitle>
+                <StyledTitle>Alloy SDK</StyledTitle>
             </TitleContainer>
         );
     };
