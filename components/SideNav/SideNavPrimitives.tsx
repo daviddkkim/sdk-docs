@@ -12,12 +12,12 @@ export interface SideNavProps {
 }
 
 const StyledNav = styled("nav", {
-  minWidth: "240px",
+  width: "264px",
   display: "flex",
   flexDirection: "column",
   rowGap: "$3",
   backgroundColor: "$background-secondary-neutral",
-  padding: "$6 $4",
+  padding: "$6 $2",
   position: "fixed",
   left: 0,
   top: 0,
@@ -64,7 +64,15 @@ const StyledNavList = styled("ul", {
   flexDirection: "column",
   rowGap: "$2",
   padding: 0,
+  boxSizing: "border-box",
   margin: 0,
+  variants: {
+    subMenu: {
+      true: {
+        marginLeft: '$5',
+      }
+    }
+  }
 });
 
 const StyledListHeader = styled("h4", {
@@ -100,22 +108,32 @@ export interface SidenavListItemProps {
   active?: boolean;
   tabIndex?: number;
   indented?: boolean;
+  subItems?: {
+    label: React.ReactNode;
+    to: string;
+    active?: boolean;
+  }[]
 }
 const StyledNavlistitem = styled("li", {
   all: "unset",
   width: "100%",
+  boxSizing: "border-box",
 });
 
 const NavLink = styled("a", {
   all: "unset",
   display: "flex",
-  padding: "$1 $4",
+  width: "100%",
+  padding: "$2 $3",
   backgroundColor: "inherit",
   border: "1px solid transparent",
+  boxSizing: "border-box",
+  alignItems: "center",
   color: "$mauve11",
   transition: "all 150ms ease",
   borderRadius: "$2",
   fontWeight: "500",
+  fontSize: "$4",
   "&:hover": {
     backgroundColor: "$background-secondary-hover",
     boxShadow: "1px 1px 1px $colors$shadow-default",
@@ -134,14 +152,29 @@ const NavLink = styled("a", {
       },
       default: {},
     },
+    subMenu: {
+      true: {
+        padding: '$1 $4',
+        fontWeight: "400",
+        fontSize: '$3',
+        width: "calc(100% - $6)",
+
+      }
+    }
   },
 });
 
 const ContentContainer = styled("div", {
   display: "flex",
-  columnGap: "$3",
+  columnGap: "$2",
   alignItems: "center",
-  justifyContent: "center",
+  width: "100%",
+});
+
+const StyledText = styled("span", {
+  lineHeight: "$4",
+  width: "100%",
+  boxSizing: "border-box",
 });
 
 export const SideNavListItem = forwardRef<HTMLLIElement, SidenavListItemProps>(
@@ -155,27 +188,50 @@ export const SideNavListItem = forwardRef<HTMLLIElement, SidenavListItemProps>(
       active = false,
       icon,
       indented = false,
+      subItems
     },
     ref
   ) => {
     return (
-      <StyledNavlistitem style={style} ref={ref}>
-        <NavLink
-          onClick={onClick}
-          href={to}
-          tabIndex={tabIndex}
-          state={active ? "active" : "default"}
-        >
-          <ContentContainer>
-            {icon ? (
-              icon
-            ) : indented ? (
-              <div style={{ width: "20px" }}></div>
-            ) : null}
-            <span>{children}</span>
-          </ContentContainer>
-        </NavLink>
-      </StyledNavlistitem>
+      <>
+        <StyledNavlistitem style={style} ref={ref}>
+          <NavLink
+            onClick={onClick}
+            href={to}
+            tabIndex={tabIndex}
+            state={active ? "active" : "default"}
+          >
+            <ContentContainer>
+              {icon ? (
+                <div>{icon}</div>
+              ) : indented ? (
+                <div style={{ width: "20px" }}></div>
+              ) : null}
+              <StyledText>{children}</StyledText>
+            </ContentContainer>
+          </NavLink>
+        </StyledNavlistitem>
+        {active && subItems &&
+          subItems.map((subItem) => {
+            console.log(subItem.to)
+            return (
+              <StyledNavList subMenu={true}>
+                <StyledNavlistitem style={style} ref={ref}>
+                  <NavLink
+                    href={subItem.to}
+                    tabIndex={tabIndex}
+                    state={subItem.active ? "active" : "default"}
+                    subMenu={true}
+                  >
+                    <ContentContainer>
+                      <StyledText>{subItem.label}</StyledText>
+                    </ContentContainer>
+                  </NavLink>
+                </StyledNavlistitem>
+              </StyledNavList>
+            )
+          })}
+      </>
     );
   }
 );

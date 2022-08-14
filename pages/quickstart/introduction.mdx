@@ -1,0 +1,25 @@
+import MainLayout from "../../components/layout/MainLayout";
+import{Box} from '../../components/Box';
+import {Button} from '../../components/Button/Button';
+import {ButtonColor, ButtonSize} from '../../components/Button/types';
+import StyledLink from '../../components/Link';
+
+# Intro to Journeys
+
+At the heart of Alloy's Identity Decisioning platform are Workflows and Journeys. Workflows outputs attributes of an applicant based on their rules configuration.
+Journeys stitch together workflows and output a single, final decision for a given applicant, managing applicant state and abstracting a lot of the hard things about identity decisioning.
+
+If you've been in contact with our team, you will have received a fully configured Journey that you can integrate with right away. If you do not have a Journey configured, please reach out to us [here](https://www.alloy.com/contact).
+
+<Box css={{
+    width:'100%',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    marginTop: '$6'
+}}>
+<div />
+<StyledLink href={'/quickstart/first-api'}><Button size={ButtonSize.large}> First API Call → </Button></StyledLink>
+</Box>
+
+
+export default ({ children }) => <MainLayout>{children}</MainLayout>;

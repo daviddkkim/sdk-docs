@@ -1,1 +1,1 @@
-declare module '@alloyidentity/web-sdk'
+declare module "@alloyidentity/web-sdk";

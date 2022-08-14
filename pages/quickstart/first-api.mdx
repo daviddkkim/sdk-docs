@@ -1,0 +1,112 @@
+import MainLayout from "../../components/layout/MainLayout";
+import{Box} from '../../components/Box';
+import {Button} from '../../components/Button/Button';
+import {ButtonColor, ButtonSize} from '../../components/Button/types';
+import StyledLink from '../../components/Link';
+import Tabs from '../../components/tabs';
+
+
+# Making your first API call
+
+First, you'll need a workflow token and a workflow secret to get started. To get a workflow token and a workflow secret, follow these steps:
+- Login to Alloy Dashboard.
+
+- Click "Workflows" on the navigation to the left side to navigate to Workflows page.
+
+- Once on the Workflows page, click on any of the workflows present to get to the Workflow details page.
+
+- Right below the title of the page, you will see `Workflow Token` and `Workflow Secret`. These are the values you will need to make a successful API call to Alloy.
+
+<Box css={{
+    marginTop: '$6'
+}}> 
+
+<Tabs 
+    tabs={
+    [
+        {
+            label: 'Curl',
+        value:'curl',
+        content: <pre> 
+
+        curl -X POST https://sandbox.alloy.co/v1/journeys/:journey_token/applications \
+        <br/>
+  -H "Content-Type: application/json" \
+        <br />
+          -H “alloy-journey-application-sync: true” \
+        <br />
+  -u workflow_token:workflow_secret \
+        <br />
+  -d {'${'}
+  <br/>
+     {' "entities": [{'}
+  <br/>
+        "phone_number": "18042562188",
+          <br/>
+           "name_first": "John",
+             <br/>
+        "name_last": "Doe",
+          <br/>
+        "email_address": "john.doe@example.com",
+          <br/>
+        "birth_date": "1985-01-23",
+          <br/>
+        "address_line_1": "1717 E Test St",
+          <br/>
+        "address_city": "Richmond",
+          <br/>
+        "address_state": "VA",
+          <br/>
+        "document_ssn": "123456789",
+          <br/>
+        "address_postal_code": "23220",
+          <br/>
+        "address_country_code": "US",
+          <br/>
+        "iovation_blackbox": "dsif20sJDFSIef89204j - dsfSDIFiwefj083463902t6j",
+          <br/>
+        "neuro_user_id": "23489 sdf - a942tj8ef - asofwe",
+          <br/>
+        "site_id": "28 dfa9342",
+          <br/>
+"meta": {'{'}
+          <br/>
+            "income": 100000
+            <br/>
+        {'      }'}
+                    <br/>
+   {'  }]'}
+                    <br/>
+ {'}'}
+
+  <br/>
+
+
+        </pre>
+        },
+         {
+            label: 'Node (js)',
+        value:'nodejs',
+        content: <pre> const ha = use() </pre>
+        },
+            {
+                label: 'Node (ts)',
+        value:'nodets',
+        content: <pre> const ha = use() </pre>
+        }
+    ]
+}/>
+</Box>
+
+<Box css={{
+    width:'100%',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    marginTop: '$6'
+}}>
+<StyledLink href={'/overview'}><Button color={ButtonColor.secondary} size={ButtonSize.large}> ← Home </Button></StyledLink>
+<StyledLink href={'/quickstart/first-api'}><Button size={ButtonSize.large}> First API Call → </Button></StyledLink>
+</Box>
+
+
+export default ({ children }) => <MainLayout>{children}</MainLayout>;

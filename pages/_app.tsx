@@ -4,7 +4,7 @@ import {
   indigoTheme,
   grassTheme,
   goldTheme,
-  globalCss
+  globalCss,
 } from "../stitches.config";
 import { AppProps } from "next/app";
 import { ReactElement, ReactNode, useEffect, useState } from "react";
@@ -27,8 +27,14 @@ const globalStyles = globalCss({
 
   svg: { display: "block" },
 
-
-  "pre, code": { margin: 0, fontFamily: "$mono" },
+  "pre, code": {
+    margin: 0, 
+    fontFamily: "$mono",
+    padding: '$2',
+    fontSize: '$3',
+    backgroundColor: '$mauve4',
+    borderRadius: '$3'
+  },
 
   "::selection": {
     backgroundColor: "$violet5",
@@ -36,30 +42,26 @@ const globalStyles = globalCss({
 
   /* Typography */
   "h1, h2, h3, h4, h5, h6": {
-    marginBottom: '1rem',
-    fontWeight: 'bold',
-    lineHeight: '1'
+    marginBottom: "1rem",
+    fontWeight: "bold",
   },
   h1: {
-    fontSize: '$7'
-
+    fontSize: "$8",
   },
 
   h2: {
-    fontSize: '$6'
+    fontSize: "$7",
   },
 
   h3: {
-    fontSize: '$5'
+    fontSize: "$6",
   },
 
   p: {
-    lineHeight: '1.5rem',
-    fontSize: '$4'
-  }
-
+    lineHeight: "1.675rem",
+    fontSize: "$4",
+  },
 });
-
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -100,9 +102,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
       }}
       defaultTheme="light"
     >
-
       {getLayout(<Component {...pageProps} />)}
-
     </ThemeProvider>
   );
 }
