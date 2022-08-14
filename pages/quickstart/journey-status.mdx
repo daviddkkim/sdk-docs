@@ -1,0 +1,35 @@
+import MainLayout from "../../components/layout/MainLayout";
+import {Box} from '../../components/Box';
+import {Button} from '../../components/Button/Button';
+import {ButtonColor, ButtonSize} from '../../components/Button/types';
+import StyledLink from '../../components/Link';
+import Tabs from '../../components/tabs';
+import Image from "next/image";
+
+
+# Handling Journey application statuses
+
+A journey application can be in a variety of statuses. Here are all the list of them and how you might deal with them:
+
+- `running`: this status is when the journey application is still in transit. Doing a GET request to /journeys/:journey_token/applications/:application_token at a later time will give you a different status.
+- `data_request`: this status is when more data is required by a workflow in a journey. The response will include information about what more data is required. Once you have gathered these requested data, you can do a PUT to /journeys/:journey_token/applications/:application_token with the new payload.
+- `approved`: this status is when an application has gone through the length of the journey and came back with an approved status. You can handle this status by approving the end user or passing this into another system.
+- `pending_documents`: this status is when the journey application arrives at a Document Verification workflow and needs documents to move forward. You can handle this by using the [Alloy SDK](http://localhost:3000/sdk) to render the document collection UI or use your own UI to collect the info.
+- `some other statuses`:
+
+
+Most likely, your Journey will consist of a Document Verification step, which means your journey application may arrive at a `pending_documents` status. This is when you can use Alloy SDK to render a document collecting UI with just a few lines of code. In the next page, let's check out how to do just that!
+
+
+<Box css={{
+    width:'100%',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    marginTop: '$6'
+}}>
+<StyledLink href={'/quickstart/how-it-works'}><Button color={ButtonColor.secondary} size={ButtonSize.large}> ← How it works </Button></StyledLink>
+<StyledLink href={'/quickstart/alloy-sdk'}><Button size={ButtonSize.large}> Using Alloy SDK → </Button></StyledLink>
+</Box>
+
+
+export default ({ children }) => <MainLayout>{children}</MainLayout>;

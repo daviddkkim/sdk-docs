@@ -30,10 +30,22 @@ const globalStyles = globalCss({
   "pre, code": {
     margin: 0, 
     fontFamily: "$mono",
-    padding: '$2',
+    padding: '$1 $2',
     fontSize: '$3',
     backgroundColor: '$mauve4',
-    borderRadius: '$3'
+    borderRadius: '$3',
+    lineHeight: '1.675rem'
+  },
+  'ol, ul': {
+    display: 'flex',
+    flexDirection:'column',
+    gap:'$2',
+    lineHeight: '1.675rem',
+    fontSize:'$4'
+  },
+
+  a: {
+    color:'$mauve11',
   },
 
   "::selection": {

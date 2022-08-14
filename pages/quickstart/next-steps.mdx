@@ -1,0 +1,26 @@
+import MainLayout from "../../components/layout/MainLayout";
+import {Box} from '../../components/Box';
+import {Button} from '../../components/Button/Button';
+import {ButtonColor, ButtonSize} from '../../components/Button/types';
+import StyledLink from '../../components/Link';
+
+# Next Steps
+
+We just walked through how to integrate with Journeys and Alloy SDK. This is only a glimpse of what the Alloy platform can do.
+As mentioned in the [How it works]('/quickstart/how-it-works') page, there are many other ways to interact with Alloy platform and your usecase might require them.
+
+Follow these links to learn about other powerful developer tooling around Alloy platform:
+
+- [Journey Webhook]('/webhooks')
+- [API References]('/"https://developer.alloy.com/public/docs"')
+
+<Box css={{
+    width:'100%',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    marginTop: '$6'
+}}>
+<StyledLink href={'/overview'}><Button color={ButtonColor.secondary} size={ButtonSize.large}> ← Home </Button></StyledLink>
+</Box>
+
+export default ({ children }) => <MainLayout>{children}</MainLayout>;

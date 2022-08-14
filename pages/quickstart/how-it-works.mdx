@@ -1,0 +1,49 @@
+import MainLayout from "../../components/layout/MainLayout";
+import{Box} from '../../components/Box';
+import {Button} from '../../components/Button/Button';
+import {ButtonColor, ButtonSize} from '../../components/Button/types';
+import StyledLink from '../../components/Link';
+import Image from "next/image";
+
+
+# How it works
+
+Alloy provides various interfaces for your application to interact with such as synchronous, asynchronous, streaming APIs, Alloy SDK and webhooks.
+For the sake of this quickstart guide, we will focus on synchronous API and the Alloy SDK, which we recommend you use when you want to instantly react to Journey status and render the right UI for your end users.
+
+Here's a diagram of how your application might *generally* interact with Alloy's Platform with syncrhonous API calls and Alloy SDK.
+
+<Box css={{
+    backgroundColor: '$mauve1'
+}}>
+ <Image
+        src={"/Diagram.jpg"}
+        width={2700}
+        height={1713}
+        style={{ borderRadius: "8px" }}
+      />
+</Box>
+
+
+To break it down:
+1. A user provides information via a form on your application UI.
+2. Your application passes the necessary information to /journeys/:journey_token/applications to create a "journey application".
+3. You will receive a response from the above API call with the journey application Token and status of the journey.
+4. It's upto your application to decide how it wants to handle different journey application statuses but typically:
+-  for `data_request` status, you will be given information about what data the journey requires. You can use that information to collect more information either from your system or the end user and send via PUT to /journeys/:journey_token/applications/:application_token
+-  for `pending_documents` status, you can render on your application UI a document verification form via the Alloy SDK or use your own form to collect documents.
+-  for `approved` status, you can approve the customer for the product or handle it however you would like.
+
+<Box css={{
+    width:'100%',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    marginTop: '$6'
+}}>
+<StyledLink href={'/quickstart/introduction'}><Button color={ButtonColor.secondary} size={ButtonSize.large}> ← Intro to journeys </Button></StyledLink>
+<StyledLink href={'/quickstart/first-api'}><Button size={ButtonSize.large}> First API Call → </Button></StyledLink>
+</Box>
+
+
+
+export default ({ children }) => <MainLayout>{children}</MainLayout>;

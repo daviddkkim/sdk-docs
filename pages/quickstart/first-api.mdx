@@ -4,21 +4,26 @@ import {Button} from '../../components/Button/Button';
 import {ButtonColor, ButtonSize} from '../../components/Button/types';
 import StyledLink from '../../components/Link';
 import Tabs from '../../components/tabs';
+import Image from "next/image";
 
 
 # Making your first API call
 
 First, you'll need a workflow token and a workflow secret to get started. To get a workflow token and a workflow secret, follow these steps:
 - Login to Alloy Dashboard.
-
 - Click "Workflows" on the navigation to the left side to navigate to Workflows page.
-
 - Once on the Workflows page, click on any of the workflows present to get to the Workflow details page.
+- Right below the title of the page, you will see `Workflow Token` and `Workflow Secret`. These are the values you will need to authorize the API call. Save them for now.
+- Click "Journeys" on the navigation to the left side to navigate to Journeys page.
+- once on the Journeys page, you will see the configured Journey and it's `Journey Token`. This token is needed for the API call as well. Save it for now. 
 
-- Right below the title of the page, you will see `Workflow Token` and `Workflow Secret`. These are the values you will need to make a successful API call to Alloy.
+Once you've retrieved the `Workflow Token` and `Workflow Secret` pair, use them to make an API call below using your preferred method. Couple things about the API call below: 
+- Notice that the API URL starts with `sandbox.alloy.co`. This is because the call is going to a sandbox environment, which means this and that; if you want to make a call directly to prod API, use `alloy.co`.
+- Notice that there is a `alloy-journey-application-sync: true` header. This ensures that you will receive a synchronous response. If you are looking to **render application UI** based on Journey API responses, we highly recommend you **use the synchronous API call** rather than reaching for other methods such as polling or our webhook.
+- This API call sends in a single entity and all data needed at once. If you have a usecase in which you need to send data in a stream (for example, multiple entities application where you don't have all information at once), click [here]("/overview") to learn more.
 
 <Box css={{
-    marginTop: '$6'
+    marginTop: '$6',
 }}> 
 
 <Tabs 
@@ -71,32 +76,81 @@ First, you'll need a workflow token and a workflow secret to get started. To get
           <br/>
 "meta": {'{'}
           <br/>
-            "income": 100000
+            {'  '}"income": 100000
             <br/>
         {'      }'}
                     <br/>
    {'  }]'}
                     <br/>
- {'}'}
+ {' }'}
 
   <br/>
-
 
         </pre>
         },
          {
             label: 'Node (js)',
         value:'nodejs',
-        content: <pre> const ha = use() </pre>
+        content: <pre> const ha = use() <br/>
+                    something something
+         </pre>
         },
-            {
+        {
                 label: 'Node (ts)',
         value:'nodets',
-        content: <pre> const ha = use() </pre>
+        content:<pre> const ha = use() <br/>
+                    something something
+         </pre>
         }
     ]
 }/>
 </Box>
+
+
+With the above API call, you should have received a response that looks something like the following:
+
+``` 
+{
+  journey_application_token: :application token,
+  status: 'pending',  
+  sandbox: true,
+  created_at: 1660502030212,
+  updated_at: 1660502030240,
+  closed_at: null,
+  recent_outcome: null,
+  complete_outcome: null,
+  journey_application_status: 'pending',
+  is_archived: false,
+  archived_at: null,
+  _embedded: {
+    child_entities: [ [Object] ],
+    entity_applications: [ [Object] ],
+    entity: {
+      external_entity_identifier: null,
+      name: null,
+      token: 'G-1mgwUbz7sIjcw9QOJjw3',
+      type: 'group'
+    },
+    events: [ [Object], [Object], [Object], [Object] ],
+    journey: {
+      journey_name: 'Onboarding + Step Up DocV',
+      journey_token: :journeyToken,
+      journey_version_num: '3',
+      _links: [Object]
+    }
+  },
+  _links: {
+    self: {
+      href: '/v1/journeys/:journeyToken/applications/:application token'
+    }
+  }
+}
+```
+
+With that, you've made your first API call to Alloy Platform, which created an application to your journey 🎉. 
+If you remember from the diagram in the previous page, from here on out, you will have to figure out how you want to handle the different statuses a journey application could be in.
+
+Let's figure out what statuses Journey Applications can be in and how you might handle that in the next page!
 
 <Box css={{
     width:'100%',
@@ -104,8 +158,8 @@ First, you'll need a workflow token and a workflow secret to get started. To get
     flexDirection: 'row',
     marginTop: '$6'
 }}>
-<StyledLink href={'/overview'}><Button color={ButtonColor.secondary} size={ButtonSize.large}> ← Home </Button></StyledLink>
-<StyledLink href={'/quickstart/first-api'}><Button size={ButtonSize.large}> First API Call → </Button></StyledLink>
+<StyledLink href={'/quickstart/how-it-works'}><Button color={ButtonColor.secondary} size={ButtonSize.large}> ← How it works </Button></StyledLink>
+<StyledLink href={'/quickstart/journey-status'}><Button size={ButtonSize.large}> Handling Journey statuses → </Button></StyledLink>
 </Box>
 
 

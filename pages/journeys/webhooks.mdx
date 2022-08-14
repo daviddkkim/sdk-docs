@@ -1,0 +1,21 @@
+import MainLayout from "../../components/layout/MainLayout";
+import{Box} from '../../components/Box';
+import {Button} from '../../components/Button/Button';
+import {ButtonColor, ButtonSize} from '../../components/Button/types';
+import StyledLink from '../../components/Link';
+
+# Journey Webhook
+
+
+<Box css={{
+    width:'100%',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    marginTop: '$6'
+}}>
+<StyledLink href={'/journeys/introduction'}><Button color={ButtonColor.secondary} size={ButtonSize.large}> ← intro to Journeys </Button></StyledLink>
+<StyledLink href={'/journeys/advanced'}><Button size={ButtonSize.large}> Advanced Usecases → </Button></StyledLink>
+</Box>
+
+
+export default ({ children }) => <MainLayout>{children}</MainLayout>;

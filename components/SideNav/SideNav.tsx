@@ -89,9 +89,19 @@ export function SideNavBar() {
                     active: router.asPath.includes('/quickstart/introduction')
                 },
                 {
+                    label: 'How it works',
+                    to:'/quickstart/how-it-works',
+                    active: router.asPath.includes('/quickstart/how-it-works')
+                },
+                {
                     label: 'First API call',
                     to:'/quickstart/first-api',
                     active: router.asPath.includes('/quickstart/first-api')
+                },
+                {
+                    label: 'Journey Statuses',
+                    to:'/quickstart/journey-status',
+                    active: router.asPath.includes('/quickstart/journey-status')
                 },
                 {
                     label: 'Using Alloy SDK',
@@ -110,9 +120,27 @@ export function SideNavBar() {
           Quickstart
         </SideNavListItem>{" "}
         <SideNavListItem
-          to="/journeys"
+          to="/journeys/advanced"
           active={router.asPath.includes("journeys") ? true : false}
           icon={getIcon(Share1Icon)}
+          subItems={
+            [
+                {
+                    label: 'Intro to Journeys',
+                    to:'/journeys/introduction',
+                    active: router.asPath.includes('/journeys/introduction')
+                },
+                {
+                    label: 'Journey Webhooks',
+                    to:'/journeys/webhooks',
+                    active: router.asPath.includes('/journeys/webhooks')
+                },
+                {
+                    label: 'Advanced Usecase',
+                    to:'/journeys/advanced',
+                    active: router.asPath.includes('/journeys/advanced')
+                },
+            ]}
         >
           {" "}
           Journeys
@@ -129,18 +157,14 @@ export function SideNavBar() {
           SDK
         </SideNavListItem>
         <SideNavListItem
-          to="/api"
-          onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-            e.preventDefault();
-            router.push("/demo");
-          }}
+          to="https://developer.alloy.com/public/docs"
+
           active={router.asPath.includes("demo") ? true : false}
           icon={getIcon(CodeIcon)}
           style={{
             width: "100%",
           }}
         >
-          {" "}
           <Box
             css={{
               display: "flex",
@@ -148,7 +172,7 @@ export function SideNavBar() {
               width: "100%",
             }}
           >
-            <span>API</span>
+            <span>API References</span>
             {getIcon(ExternalLinkIcon)}
           </Box>
         </SideNavListItem>

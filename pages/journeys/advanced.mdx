@@ -1,0 +1,20 @@
+import MainLayout from "../../components/layout/MainLayout";
+import {Box} from '../../components/Box';
+import {Button} from '../../components/Button/Button';
+import {ButtonColor, ButtonSize} from '../../components/Button/types';
+import StyledLink from '../../components/Link';
+
+# Journeys
+
+Let's get started
+
+<Box css={{
+    width:'100%',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    marginTop: '$6'
+}}>
+<StyledLink href={'/journeys/webhooks'}><Button color={ButtonColor.secondary} size={ButtonSize.large}> ← Journey Webhooks </Button></StyledLink>
+</Box>
+
+export default ({ children }) => <MainLayout>{children}</MainLayout>;
