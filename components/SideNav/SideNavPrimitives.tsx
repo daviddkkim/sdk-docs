@@ -212,10 +212,9 @@ export const SideNavListItem = forwardRef<HTMLLIElement, SidenavListItemProps>(
           </NavLink>
         </StyledNavlistitem>
         {active && subItems &&
-          subItems.map((subItem) => {
-            console.log(subItem.to)
+          subItems.map((subItem, index) => {
             return (
-              <StyledNavList subMenu={true}>
+              <StyledNavList subMenu={true} key={index}>
                 <StyledNavlistitem style={style} ref={ref}>
                   <NavLink
                     href={subItem.to}
