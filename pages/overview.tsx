@@ -98,8 +98,8 @@ const Overview = () => {
             }}
           >
             <Button size={ButtonSize.large} onClick={()=>{
-                router.push('/quickstart/journeys')
-            }}> Get Started </Button>
+                router.push('/quickstart/introduction')
+            }}> Get Started → </Button>
           </Box>
         </Box>
         <ImagedBox />
@@ -118,7 +118,7 @@ const Overview = () => {
             body={"Sample Description"}
             footer={
               <Link href={"https://developer.alloy.com/public/docs"} passHref>
-                <StyledLink target="_blank">View References</StyledLink>
+                <StyledLink target="_blank">View References →</StyledLink>
               </Link>
             }
             style={{ maxWidth: "344px" }}
@@ -128,7 +128,7 @@ const Overview = () => {
             body={"Sample Description"}
             footer={
               <Link href={"/sdk"} passHref>
-                <StyledLink> Try it</StyledLink>
+                <StyledLink> Try it →</StyledLink>
               </Link>
             }
             style={{ maxWidth: "344px" }}
@@ -138,7 +138,7 @@ const Overview = () => {
             body={"Sample Description"}
             footer={
               <Link href={"/journeys/webhooks"} passHref>
-                <StyledLink> Try it</StyledLink>
+                <StyledLink> Try it →</StyledLink>
               </Link>
 
             }
