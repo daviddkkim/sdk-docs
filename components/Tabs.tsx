@@ -1,8 +1,6 @@
 import * as TabsPrimitive from '@radix-ui/react-tabs';
-import { useEffect } from 'react';
 import { styled } from '../stitches.config';
-import { Button } from './Button/Button';
-import { ButtonColor } from './Button/types';
+
 
 
 const StyledTabs = styled(TabsPrimitive.Root, {
