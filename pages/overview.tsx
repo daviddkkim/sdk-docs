@@ -134,14 +134,19 @@ const Overview = () => {
             style={{ maxWidth: "344px" }}
           />
           <Card
-            title={"Alloy Webhooks"}
+            title={"Webhooks"}
             body={"Sample Description"}
-            footer={"Learn more"}
+            footer={
+              <Link href={"/journeys/webhooks"} passHref>
+                <StyledLink> Try it</StyledLink>
+              </Link>
+
+            }
             style={{ maxWidth: "344px" }}
           />
         </Box>
       </Box>
-      <Box css={{ flexDirection: "column", gap: "$6" }}>
+      <Box css={{ flexDirection: "column", gap: "$6", marginBottom: '$9' }}>
         <h2 style={{ margin: 0 }}>Popular Usecases</h2>
         <Box
           css={{

@@ -17,9 +17,9 @@ To initialize the Alloy SDK, you need these information:
 ```
 const alloyInitParams = {
     key: {your_sdk_key},
-    journeyApplicationToken: {journey_application_token from the api call to create journey application},
-    journeyToken:{journey_token from Journey's page in the dashboard},
-    documents: ['license', 'passport'], // list of documents you want to collect.
+    journeyApplicationToken: {journey_application_token from api call},
+    journeyToken:{journey_token from the dashboard},
+    documents: ['license', 'passport'], //documents you want to collect.
     selfie: true,
 };
 
@@ -56,7 +56,7 @@ Alloy SDK automatically moves your journey application forward on completion of 
     width:'100%',
     justifyContent: 'space-between',
     flexDirection: 'row',
-    marginTop: '$6'
+    margin: '$6 0'
 }}>
 <StyledLink href={'/quickstart/how-it-works'}><Button color={ButtonColor.secondary} size={ButtonSize.large}> ← How it works </Button></StyledLink>
 <StyledLink href={'/quickstart/alloy-sdk'}><Button size={ButtonSize.large}> Using Alloy SDK → </Button></StyledLink>
