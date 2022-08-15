@@ -7,9 +7,9 @@ import Tabs from '../../components/Tabs';
 import Image from "next/image";
 
 
-# Handling Journey application statuses
+# Handling Statuses
 
-A journey application can be in a variety of statuses. Here are all the list of them and how you might deal with them:
+A journey application can be in a variety of `status`. Here are all the list of them and how you might deal with them:
 
 - `running`: this status is when the journey application is still in transit. Doing a GET request to /journeys/:journey_token/applications/:application_token at a later time will give you a different status.
 - `data_request`: this status is when more data is required by a workflow in a journey. The response will include information about what more data is required. Once you have gathered these requested data, you can do a PUT to /journeys/:journey_token/applications/:application_token with the new payload.
