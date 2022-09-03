@@ -5,6 +5,7 @@ import { Button } from "../Button/Button";
 import { ExternalLinkIcon } from "@radix-ui/react-icons";
 import chroma from "chroma-js";
 import { ButtonSize } from "../Button/types";
+import { PluginUI } from "../PluginUi/PluginUI";
 
 const Container = styled("div", {
   display: "flex",
@@ -13,12 +14,17 @@ const Container = styled("div", {
   justifyContent: "space-between",
   border: "1px solid $mauve8",
   borderRadius: "$3",
-  minHeight: "442px",
+  minHeight: "650px",
   backgroundImage: "radial-gradient( $colors$mauve11 1px, transparent 0)",
   backgroundColor: "$mauve2",
   backgroundPosition: "0 0",
   backgroundSize: "30px 30px",
 });
+const Separator = styled('div', {
+  width: '100%',
+  height: '1px',
+  backgroundColor: '$mauve8'
+})
 
 const ColorEditorContainer = styled("div", {
   bottom: 0,
@@ -30,7 +36,7 @@ const ColorEditorContainer = styled("div", {
   boxSizing: "border-box",
   backgroundColor: "$mauve3",
   borderRadius: "$3",
-  gap: "$2",
+  gap: "$5",
 });
 
 const Box = styled("div", {
@@ -110,14 +116,28 @@ const StyledInput = styled("input", {
   },
 });
 
+const Title = styled('h3', {
+  margin: 0,
+  color: '$mauve12',
+  fontSize: '$4',
+  '&:first-letter': {
+    textTransform: 'capitalize'
+  }
+})
+
 const AlloyDemo = () => {
   const [accentColor, setAccentColor] = useState("#2642EF");
+  const [background, setBackgroundColor] = useState("#ffffff");
+  const [text, setText] = useState("#191919");
+  const [selectedItem, setSelectedItem] = useState('')
   const [url, setUrl] = useState("");
   const [showIframe, setShowIframe] = useState(false);
 
   const luminance = chroma(accentColor).luminance();
   const colors = {
-    primary: accentColor,
+    primary: background,
+    accent: accentColor,
+    text: text,
     secondary:
       luminance < 0.5
         ? chroma(accentColor).brighten().hex()
@@ -126,13 +146,10 @@ const AlloyDemo = () => {
 
   useEffect(() => {
     initAlloy(colors);
-  }, [accentColor]);
+  }, [accentColor, background, text]);
 
-  const callback = () => {};
+  const callback = () => { };
   const handleOpen = (anchor?: string) => {
-    /*       const anchorElementSelected = document.getElementById('anchor');
-              console.log(anchorElementSelected)
-              openAlloy(callback, anchorElementSelected?.id); */
     openAlloy(callback, anchor);
   };
 
@@ -142,6 +159,7 @@ const AlloyDemo = () => {
     openAlloy(callback, anchorElementSelected?.id);
   };
 
+  console.log(colors)
   return (
     <Container id={"anchor"}>
       <Box
@@ -152,33 +170,89 @@ const AlloyDemo = () => {
           alignItems: "center",
         }}
       >
-        <StyledButton
-          onClick={() => {
-            handleOpen();
-          }}
-          css={{
-            backgroundColor: colors.primary,
-            "&:hover": {
-              backgroundColor: colors.secondary,
-            },
-          }}
-        >
-          {" "}
-          Click me
-        </StyledButton>
+        <PluginUI selectedItem={selectedItem} onChange={setSelectedItem} colors={colors} />
       </Box>
       <ColorEditorContainer>
-        <Box>
-          <StyledLabel> Accent Color</StyledLabel>
-          <StyledInput
-            type={"color"}
-            defaultValue={accentColor}
-            onChange={(e) => {
-              setAccentColor(e.currentTarget.value);
-            }}
-            css={{ padding: "1px 2px" }}
-          ></StyledInput>
+        <Title>Theme</Title>
+        <Box css={{
+          gap: '$2'
+        }}>
+          <Box >
+            <StyledLabel> Accent</StyledLabel>
+            <StyledInput
+              type={"color"}
+              defaultValue={accentColor}
+              onChange={(e) => {
+                setAccentColor(e.currentTarget.value);
+              }}
+              css={{ padding: "1px 2px" }}
+            ></StyledInput>
+          </Box>
+          <Box>
+            <StyledLabel> Background</StyledLabel>
+            <StyledInput
+              type={"color"}
+              defaultValue={background}
+              onChange={(e) => {
+                setBackgroundColor(e.currentTarget.value);
+              }}
+              css={{ padding: "1px 2px" }}
+            ></StyledInput>
+          </Box>
+          <Box>
+            <StyledLabel> Text</StyledLabel>
+            <StyledInput
+              type={"color"}
+              defaultValue={text}
+              onChange={(e) => {
+                setText(e.currentTarget.value);
+              }}
+              css={{ padding: "1px 2px" }}
+            ></StyledInput>
+          </Box>
         </Box>
+        <Separator />
+        <Box>
+          <Title>Custom Selector: <span>{selectedItem ? "." + selectedItem : 'No Selection'}</span></Title>
+        </Box>
+        <Box css={{
+          gap: '$2'
+        }}>
+          <Box >
+            <StyledLabel> Accent</StyledLabel>
+            <StyledInput
+              type={"color"}
+              defaultValue={accentColor}
+              onChange={(e) => {
+                setAccentColor(e.currentTarget.value);
+              }}
+              css={{ padding: "1px 2px" }}
+            ></StyledInput>
+          </Box>
+          <Box>
+            <StyledLabel> Background</StyledLabel>
+            <StyledInput
+              type={"color"}
+              defaultValue={background}
+              onChange={(e) => {
+                setBackgroundColor(e.currentTarget.value);
+              }}
+              css={{ padding: "1px 2px" }}
+            ></StyledInput>
+          </Box>
+          <Box>
+            <StyledLabel> Text</StyledLabel>
+            <StyledInput
+              type={"color"}
+              defaultValue={text}
+              onChange={(e) => {
+                setText(e.currentTarget.value);
+              }}
+              css={{ padding: "1px 2px" }}
+            ></StyledInput>
+          </Box>
+        </Box>
+        <Separator />
         <Box>
           <StyledLabel>
             {" "}
